@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "title": "Every Dinosaur Explained",
+    "language": "vi",
+    "visual_style": "illustrated-explainer",
+    "aspect_ratio": "16:9"
+  },
+  "defaults": {
+    "asset_fit": "contain",
+    "background": "#f7f4ed",
+    "transition": "cut",
+    "safe_margin": 80
+  },
+  "assets": [
+    {
+      "index": 1,
+      "basename": "1",
+      "type": "image",
+      "purpose": "hero",
+      "description": "Full-body Tyrannosaurus Rex, side view, isolated composition",
+      "transparent_preferred": true,
+      "first_scene": "scene-001"
+    },
+    {
+      "index": 2,
+      "basename": "2",
+      "type": "image",
+      "purpose": "measurement",
+      "description": "Full-body Tyrannosaurus Rex suitable for a length comparison graphic",
+      "transparent_preferred": true,
+      "first_scene": "scene-002"
+    },
+    {
+      "index": 3,
+      "basename": "3",
+      "type": "image",
+      "purpose": "detail",
+      "description": "Close-up Tyrannosaurus Rex head with visible teeth",
+      "transparent_preferred": false,
+      "first_scene": "scene-003"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "scene-001",
+      "order": 1,
+      "narration": "Tyrannosaurus Rex là một trong những loài săn mồi nổi tiếng nhất từng tồn tại.",
+      "timing": {
+        "source": "subtitle",
+        "start": null,
+        "end": null,
+        "subtitle_start_id": null,
+        "subtitle_end_id": null
+      },
+      "layout": "hero",
+      "assets": [
+        {
+          "index": 1,
+          "role": "primary",
+          "reuse": false,
+          "motion": {
+            "enter": "pop_in",
+            "hold": null,
+            "exit": null
+          }
+        }
+      ],
+      "text": [
+        {
+          "value": "TYRANNOSAURUS REX",
+          "role": "title",
+          "position": "top-center",
+          "effect": "fade_in"
+        }
+      ],
+      "camera": { "effect": "slow_push" },
+      "transition_in": "cut",
+      "transition_out": "cut"
+    },
+    {
+      "id": "scene-002",
+      "order": 2,
+      "narration": "Một cá thể trưởng thành có thể dài khoảng mười hai mét.",
+      "timing": {
+        "source": "subtitle",
+        "start": null,
+        "end": null,
+        "subtitle_start_id": null,
+        "subtitle_end_id": null
+      },
+      "layout": "measurement",
+      "assets": [
+        {
+          "index": 2,
+          "role": "primary",
+          "reuse": false,
+          "motion": {
+            "enter": "slide_left",
+            "hold": null,
+            "exit": null
+          }
+        }
+      ],
+      "data": {
+        "measurement": {
+          "value": "12",
+          "unit": "m",
+          "orientation": "horizontal"
+        }
+      },
+      "camera": { "effect": "static" },
+      "transition_in": "cut",
+      "transition_out": "cut"
+    },
+    {
+      "id": "scene-003",
+      "order": 3,
+      "narration": "Nhưng thứ đáng sợ nhất chính là bộ hàm cực kỳ mạnh.",
+      "timing": {
+        "source": "subtitle",
+        "start": null,
+        "end": null,
+        "subtitle_start_id": null,
+        "subtitle_end_id": null
+      },
+      "layout": "close-up",
+      "assets": [
+        {
+          "index": 3,
+          "role": "primary",
+          "reuse": false,
+          "motion": {
+            "enter": "fade_in",
+            "hold": null,
+            "exit": null
+          },
+          "focus": { "x": 0.63, "y": 0.4 }
+        }
+      ],
+      "camera": { "effect": "detail_zoom" },
+      "transition_in": "cut",
+      "transition_out": "cut"
+    }
+  ]
+}

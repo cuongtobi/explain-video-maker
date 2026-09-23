@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cuongtobi/explain-video-maker/schemas/visual_plan.schema.json",
+  "title": "Illustrated Explainer Visual Plan",
+  "type": "object",
+  "required": ["schema_version", "project", "assets", "scenes"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "project": {
+      "type": "object",
+      "required": ["title", "language", "visual_style", "aspect_ratio"],
+      "additionalProperties": true,
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "language": { "type": "string", "minLength": 1 },
+        "visual_style": { "type": "string", "minLength": 1 },
+        "aspect_ratio": { "type": "string", "minLength": 1 }
+      }
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "assets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/assetDefinition" }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/scene" }
+    }
+  },
+  "$defs": {
+    "assetDefinition": {
+      "type": "object",
+      "required": ["index", "basename", "type", "description"],
+      "additionalProperties": true,
+      "properties": {
+        "index": { "type": "integer", "minimum": 1 },
+        "basename": { "type": "string", "pattern": "^[1-9][0-9]*$" },
+        "type": { "enum": ["image", "video", "lottie"] },
+        "purpose": { "type": "string" },
+        "description": { "type": "string", "minLength": 1 },
+        "transparent_preferred": { "type": "boolean" },
+        "first_scene": { "type": ["string", "null"] }
+      }
+    },
+    "focus": {
+      "type": "object",
+      "required": ["x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 1 },
+        "y": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "motion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enter": { "type": ["string", "null"] },
+        "hold": { "type": ["string", "null"] },
+        "exit": { "type": ["string", "null"] }
+      }
+    },
+    "shot": {
+      "type": "object",
+      "required": ["start_ratio", "end_ratio", "camera"],
+      "additionalProperties": true,
+      "properties": {
+        "start_ratio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "end_ratio": { "type": "number", "minimum": 0, "maximum": 1 },
+        "camera": { "type": "string" },
+        "focus": { "$ref": "#/$defs/focus" }
+      }
+    },
+    "sceneAsset": {
+      "type": "object",
+      "required": ["index", "role"],
+      "additionalProperties": true,
+      "properties": {
+        "index": { "type": "integer", "minimum": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "reuse": { "type": "boolean" },
+        "layer": { "type": "integer" },
+        "fit": { "enum": ["contain", "cover", "natural"] },
+        "anchor": { "type": "string" },
+        "motion": { "$ref": "#/$defs/motion" },
+        "focus": { "$ref": "#/$defs/focus" },
+        "shots": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/shot" }
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "required": ["source", "start", "end"],
+      "additionalProperties": true,
+      "properties": {
+        "source": { "enum": ["subtitle", "manual"] },
+        "start": { "type": ["number", "null"], "minimum": 0 },
+        "end": { "type": ["number", "null"], "minimum": 0 },
+        "subtitle_start_id": { "type": ["integer", "null"], "minimum": 1 },
+        "subtitle_end_id": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "required": ["id", "order", "narration", "timing", "layout", "assets", "camera"],
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "order": { "type": "integer", "minimum": 1 },
+        "narration": { "type": "string" },
+        "timing": { "$ref": "#/$defs/timing" },
+        "layout": { "type": "string", "minLength": 1 },
+        "assets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sceneAsset" }
+        },
+        "text": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["value"],
+            "additionalProperties": true,
+            "properties": {
+              "value": { "type": "string" },
+              "role": { "type": "string" },
+              "position": { "type": "string" },
+              "effect": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "data": { "type": "object" },
+        "camera": {
+          "type": "object",
+          "required": ["effect"],
+          "additionalProperties": true,
+          "properties": {
+            "effect": { "type": "string" }
+          }
+        },
+        "transition_in": { "type": "string" },
+        "transition_out": { "type": "string" }
+      }
+    }
+  }
+}

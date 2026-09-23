@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "layouts": {
+    "hero": {
+      "description": "Introduce a subject with one dominant visual and optional title."
+    },
+    "single-focus": {
+      "description": "One primary visual with restrained camera motion."
+    },
+    "full-frame": {
+      "description": "A supplied visual fills the canvas with cover/contain chosen by the scene."
+    },
+    "close-up": {
+      "description": "Detail-led frame that may use normalized focus coordinates."
+    },
+    "comparison": {
+      "description": "Two or more visual subjects compared in one frame."
+    },
+    "measurement": {
+      "description": "A subject plus generated measurement line/label."
+    },
+    "environment": {
+      "description": "Illustrated environment with optional foreground subject layers."
+    },
+    "map": {
+      "description": "Map or distribution visual with generated labels/markers."
+    },
+    "diagram": {
+      "description": "Explanatory diagram with generated callouts or arrows."
+    },
+    "multi-object": {
+      "description": "Multiple supplied assets composed in the same scene."
+    },
+    "fact-card": {
+      "description": "Typography/stat-led scene, optionally with one supporting asset."
+    },
+    "cinematic-image": {
+      "description": "Large illustration driven primarily by crop and camera movement."
+    }
+  }
+}
