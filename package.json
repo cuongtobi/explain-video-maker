@@ -1,0 +1,13 @@
+{
+  "name": "explain-video-maker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "validate:example": "node skills/illustrated-explainer-video/scripts/validate-visual-plan.mjs skills/illustrated-explainer-video/examples/visual_plan.example.json",
+    "test": "node tests/smoke.mjs"
+  }
+}
